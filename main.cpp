@@ -4,7 +4,6 @@
 
 #include "test_suite.h"
 
-#define RUN_TEST2( function ) timer.reset(); function(); time=timer.seconds(); std::cout << "T[" #function "]: " << time << "s." << std::endl
 #define RUN_TEST( function ) timer.reset(); test_double.function(); Kokkos::fence(); t_double=timer.seconds(); \
                              timer.reset(); test_float.function(); Kokkos::fence(); t_float=timer.seconds(); \
                              std::cout << std::setw(15) << "T[" #function "] " \
@@ -15,17 +14,18 @@ int main() {
 
   Kokkos::initialize();
   {
-    test_suite<double, 3000, 100> test_double;
-    test_suite<float, 3000, 100> test_float;
+    const int size = 1000;
+    const int loops = 1000;
+
+    test_suite<double, size, loops> test_double;
+    test_suite<float, size, loops> test_float;
 
     Kokkos::Timer timer;
     double t_double = 0;
     double t_float = 0;
 
-    // test_double.init_views();
-    // double time = timer.seconds();
-    // std::cout << " Time for init_views: " << time << "s." << std::endl;
-
+    std::cout << " Array size: " << size << " x " << size << " x " << loops << std::endl; 
+    std::cout << std::endl;
     std::cout << "   FUNCTION        FLOAT   |    DOUBLE  " << std::endl;
     std::cout << "---------------------------+------------" << std::endl;
     RUN_TEST( init_views );
