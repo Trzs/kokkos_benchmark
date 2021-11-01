@@ -82,7 +82,7 @@ struct test_suite
     Kokkos::parallel_for("exp", range2d_policy ({0, 0}, {N, N}), KOKKOS_LAMBDA (const int i, const int j) {
       for (int k=0; k<M; k++)
       {
-        tmp_A(i, j, k) = std::exp( tmp_C(i, j, k) );
+        tmp_A(i, j, k) = Kokkos::Experimental::exp( tmp_C(i, j, k) );
       }
     });
   }
@@ -94,7 +94,7 @@ struct test_suite
     Kokkos::parallel_for("sin", range2d_policy ({0, 0}, {N, N}), KOKKOS_LAMBDA (const int i, const int j) {
       for (int k=0; k<M; k++)
       {
-        tmp_A(i, j, k) = std::sin( tmp_C(i, j, k) );
+        tmp_A(i, j, k) = Kokkos::Experimental::sin( tmp_C(i, j, k) );
       }
     });
   }
@@ -106,7 +106,7 @@ struct test_suite
     Kokkos::parallel_for("sin", range2d_policy ({0, 0}, {N, N}), KOKKOS_LAMBDA (const int i, const int j) {
       for (int k=0; k<M; k++)
       {
-        tmp_A(i, j, k) = std::exp( std::sin( tmp_C(i, j, k)) );
+        tmp_A(i, j, k) = Kokkos::Experimental::exp( Kokkos::Experimental::sin( tmp_C(i, j, k)) );
       }
     });
   }

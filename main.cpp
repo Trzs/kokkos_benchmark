@@ -15,7 +15,7 @@ int main() {
   Kokkos::initialize();
   {
     const int size = 1000;
-    const int loops = 1000;
+    const int loops = 500;
 
     test_suite<double, size, loops> test_double;
     test_suite<float, size, loops> test_float;
