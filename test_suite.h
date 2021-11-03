@@ -55,7 +55,7 @@ struct test_suite
   {
     auto tmp_B = B;
     auto tmp_C = C;
-    Kokkos::parallel_for("mult_three", range2d_policy ({0, 0}, {N, N}), KOKKOS_LAMBDA (const int i, const int j) {
+    Kokkos::parallel_for("mult", range2d_policy ({0, 0}, {N, N}), KOKKOS_LAMBDA (const int i, const int j) {
       for (int k=0; k<M; k++)
       {
         tmp_C(i, j, k) = tmp_C(i, j, k) * tmp_B(i, j, k);
@@ -67,7 +67,7 @@ struct test_suite
   {
     auto tmp_B = B;
     auto tmp_C = C;
-    Kokkos::parallel_for("div_three", range2d_policy ({0, 0}, {N, N}), KOKKOS_LAMBDA (const int i, const int j) {
+    Kokkos::parallel_for("div", range2d_policy ({0, 0}, {N, N}), KOKKOS_LAMBDA (const int i, const int j) {
       for (int k=0; k<M; k++)
       {
         tmp_B(i, j, k) = tmp_B(i, j, k) / tmp_C(i, j, k);
@@ -103,7 +103,7 @@ struct test_suite
   {
     auto tmp_A = A;
     auto tmp_C = C;
-    Kokkos::parallel_for("sin", range2d_policy ({0, 0}, {N, N}), KOKKOS_LAMBDA (const int i, const int j) {
+    Kokkos::parallel_for("expsin", range2d_policy ({0, 0}, {N, N}), KOKKOS_LAMBDA (const int i, const int j) {
       for (int k=0; k<M; k++)
       {
         tmp_A(i, j, k) = Kokkos::Experimental::exp( Kokkos::Experimental::sin( tmp_C(i, j, k)) );
