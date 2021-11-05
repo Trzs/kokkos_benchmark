@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 3.14)
 cmake_policy(SET CMP0074 NEW)
 cmake_policy(SET CMP0028 NEW)
 
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
 # set the project name
 project(Kokkos_benchmark)
 
